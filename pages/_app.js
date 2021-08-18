@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import 'minireset.css'
 import '@alanmaranto/components/styles/main.css';
 import '@alanmaranto/components/styles/tokens.css';
 
