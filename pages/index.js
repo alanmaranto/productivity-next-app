@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Heading, Input, Button, Spacer } from "@alanmaranto/components";
+import {
+  Heading,
+  Input,
+  Button,
+  Spacer,
+} from "@alanmaranto/components";
 
 export default function Home() {
   const [formValues, setFormValues] = useState({
