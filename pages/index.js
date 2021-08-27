@@ -4,6 +4,7 @@ import {
   Input,
   Button,
   Spacer,
+  CenteredContent,
 } from "@alanmaranto/components";
 
 export default function Home() {
@@ -18,12 +19,7 @@ export default function Home() {
     setFormValues({ ...formValues, [key]: value });
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <CenteredContent>
       <Heading>Cuentame sobre ti</Heading>
       <Spacer.Horizontal size="md" />
       <Input
@@ -55,6 +51,6 @@ export default function Home() {
         <Spacer.Horizontal size="md" />
         <Button type="tertiary">Saltar este paso por ahora</Button>
       </div>
-    </div>
+    </CenteredContent>
   );
 }

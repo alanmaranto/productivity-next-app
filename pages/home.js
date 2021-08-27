@@ -1,13 +1,15 @@
-import { Heading, Avatar, Spacer, Card, Icon } from "@alanmaranto/components";
+import {
+  Heading,
+  Avatar,
+  Spacer,
+  Card,
+  Icon,
+  CenteredContent,
+} from "@alanmaranto/components";
 
 export default function Home() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <CenteredContent>
       <div style={{ display: "flex" }}>
         <Avatar src="https://placeimg.com/200/200/any" />
         <Spacer.Vertical size="xs" />
@@ -44,6 +46,6 @@ export default function Home() {
         <Spacer.Vertical size="xs" />
         <span>María ha hecho check-in en Factoria</span>
       </Card>
-    </div>
+    </CenteredContent>
   );
 }
