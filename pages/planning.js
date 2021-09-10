@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   FullHeightContent,
   Button,
@@ -6,9 +5,17 @@ import {
   Heading,
   Spacer,
 } from "@alanmaranto/components";
+import { useQuery } from "react-query";
+import { tasks } from "../api";
 
 const Start = () => {
-  const [tasks, setTasks] = useState([]);
+  const { isLoading, error, data } = useQuery("todos", () => tasks.getAll());
+
+  if (isLoading) return "Loading";
+  if (error) return `Error ${error.message}`;
+
+  console.log("data", data);
+
   return (
     <FullHeightContent
       content={
@@ -38,7 +45,8 @@ const Start = () => {
           <Heading size="lg">
             Ahora dime, ¿Cuál es la primera tarea en la que trabajarás hoy
           </Heading>
-          <button></button>
+          <button>Toca para agregar la tarea</button>
+          {data && data.map((task, idx) => <span key={idx}>{task.title}</span>)}
         </div>
       }
       footer={
