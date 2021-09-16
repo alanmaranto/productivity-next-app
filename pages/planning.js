@@ -5,14 +5,32 @@ import {
   Heading,
   Spacer,
 } from "@alanmaranto/components";
-import { useQuery } from "react-query";
-import { tasks } from "../api";
+import { useQuery, useQueryClient, useMutation } from "react-query";
+import { createTask, getAll } from "./api/tasks/tasks";
 
 const Start = () => {
-  const { isLoading, error, data } = useQuery("todos", () => tasks.getAll());
+  const queryClient = useQueryClient();
 
-  if (isLoading) return "Loading";
-  if (error) return `Error ${error.message}`;
+  const { isLoading, error, data } = useQuery("tasks", getAll);
+
+  const addTaskMutation = useMutation(createTask, {
+    onSuccess: () => {
+      // Query Invalidations
+      queryClient.invalidateQueries("tasks");
+    },
+  });
+
+  console.log("addTaskMutation", addTaskMutation);
+
+  const handleOnClick = () => {
+    addTaskMutation.mutate({
+      title: "New Task",
+      author: "Alan",
+    });
+  };
+
+  // if (isLoading) return "Loading";
+  // if (error) return error.message;
 
   console.log("data", data);
 
@@ -45,8 +63,17 @@ const Start = () => {
           <Heading size="lg">
             Ahora dime, ¿Cuál es la primera tarea en la que trabajarás hoy
           </Heading>
-          <button>Toca para agregar la tarea</button>
-          {data && data.map((task, idx) => <span key={idx}>{task.title}</span>)}
+          {isLoading && <div>Loading</div>}
+          {error && <div>Error {error.message}</div>}
+
+          <button onClick={handleOnClick}>Toca para agregar la tarea</button>
+          {data &&
+            data.map((task) => (
+              <div key={task.id}>
+                <span>{task.id}</span>
+                <span>{task.title}</span>
+              </div>
+            ))}
         </div>
       }
       footer={
