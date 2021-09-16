@@ -20,8 +20,6 @@ const Start = () => {
     },
   });
 
-  console.log("addTaskMutation", addTaskMutation);
-
   const handleOnClick = () => {
     addTaskMutation.mutate({
       title: "New Task",
@@ -31,8 +29,6 @@ const Start = () => {
 
   // if (isLoading) return "Loading";
   // if (error) return error.message;
-
-  console.log("data", data);
 
   return (
     <FullHeightContent

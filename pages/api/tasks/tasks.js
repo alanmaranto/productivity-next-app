@@ -2,38 +2,46 @@ import axios from "axios";
 
 const SERVER_URL = "http://localhost:3001";
 
+const setRequest = async (url, options = {}) => {
+  const method = options.method ? options.method.toUpperCase() : "GET";
+  const axiosRequest = {
+    url: `${SERVER_URL}/${url}`,
+    method,
+  };
+
+  if (options.data) {
+    axiosRequest.data = options.data;
+  }
+
+  if (options.jsonHeader) {
+    axiosRequest.headers = {
+      "Content-Type": "application/json",
+    };
+  }
+  return await axios(axiosRequest);
+};
+
 const getAll = async () => {
   try {
-    const result = await axios({
-      url: `${SERVER_URL}/tasks`,
-      method: "GET",
-    });
-    console.log("RESULT", result);
+    const result = await setRequest("tasks");
     if (result.status === 200) {
       return result.data;
     } else {
       throw new Error("Error recuperando las tareas");
     }
-    /*     const result = await fetch(`${SERVER_URL}/tasks`, {});
-    console.log("result", result);
-    const response = await result.json();
-    console.log('response', response) */
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
 };
 
 const createTask = async (body) => {
   try {
-    const result = await axios({
-      url: `${SERVER_URL}/tasks`,
-      method: "POST",
+    const options = {
+      method: "post",
       data: body,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+      jsonHeader: true,
+    };
+    const result = await setRequest("tasks", options);
     return result;
   } catch (error) {
     throw new Error(error);
