@@ -34,6 +34,15 @@ const getAll = async () => {
   }
 };
 
+const getById = async (id) => {
+  try {
+    const result = await setRequest(`tasks${id}`);
+    return result.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const createTask = async (body) => {
   try {
     const options = {
@@ -48,7 +57,21 @@ const createTask = async (body) => {
   }
 };
 
+const deleteTask = async (id) => {
+  try {
+    const options = {
+      method: "delete",
+    };
+    const result = await setRequest(`tasks/${id}`, options);
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   createTask,
   getAll,
+  deleteTask,
+  getById,
 };

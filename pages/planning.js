@@ -6,7 +6,7 @@ import {
   Spacer,
 } from "@alanmaranto/components";
 import { useQuery, useQueryClient, useMutation } from "react-query";
-import { createTask, getAll } from "./api/tasks/tasks";
+import { createTask, getAll, deleteTask } from "./api/tasks/tasks";
 
 const Start = () => {
   const queryClient = useQueryClient();
@@ -20,11 +20,22 @@ const Start = () => {
     },
   });
 
+  const deleteTaskMutation = useMutation(deleteTask, {
+    onSuccess: () => {
+      // Query Invalidations
+      queryClient.invalidateQueries("tasks");
+    },
+  });
+
   const handleOnClick = () => {
     addTaskMutation.mutate({
       title: "New Task",
       author: "Alan",
     });
+  };
+
+  const handleRemove = (id) => {
+    deleteTaskMutation.mutate(id);
   };
 
   // if (isLoading) return "Loading";
@@ -66,8 +77,9 @@ const Start = () => {
           {data &&
             data.map((task) => (
               <div key={task.id}>
-                <span>{task.id}</span>
-                <span>{task.title}</span>
+                <Heading>{task.id}</Heading>
+                <Heading>{task.title}</Heading>
+                <button onClick={() => handleRemove(task.id)}>x</button>
               </div>
             ))}
         </div>
