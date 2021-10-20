@@ -8,10 +8,21 @@ import {
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import { createTask, getAll, deleteTask } from "./api/tasks/tasks";
 
-const Start = () => {
+export async function getStaticProps() {
+  const tasks = await getAll();
+  return { props: { tasks } };
+}
+
+const Planning = ({ tasks }) => {
   const queryClient = useQueryClient();
 
-  const { isLoading, error, data } = useQuery("tasks", getAll);
+  // client side rendering
+  // const { isLoading, error, data } = useQuery("tasks", getAll);
+
+  // server side rendering
+  const { isLoading, error, data } = useQuery("tasks", getAll, {
+    initialData: tasks,
+  });
 
   const addTaskMutation = useMutation(createTask, {
     onSuccess: () => {
@@ -76,7 +87,7 @@ const Start = () => {
           <button onClick={handleOnClick}>Toca para agregar la tarea</button>
           {data &&
             data.map((task) => (
-              <div key={task.id}>
+              <div key={task.id} style={{ display: "flex" }}>
                 <Heading>{task.id}</Heading>
                 <Heading>{task.title}</Heading>
                 <button onClick={() => handleRemove(task.id)}>x</button>
@@ -94,4 +105,4 @@ const Start = () => {
   );
 };
 
-export default Start;
+export default Planning;
