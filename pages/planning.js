@@ -4,6 +4,7 @@ import {
   Avatar,
   Heading,
   Spacer,
+  AddButton,
 } from "@alanmaranto/components";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import { createTask, getAll, deleteTask } from "./api/tasks/tasks";
@@ -81,10 +82,11 @@ const Planning = ({ tasks }) => {
           <Heading size="lg">
             Ahora dime, ¿Cuál es la primera tarea en la que trabajarás hoy
           </Heading>
+          <AddButton onAdd={handleOnClick}>
+            Toca para agregar la tarea
+          </AddButton>
           {isLoading && <div>Loading</div>}
           {error && <div>Error {error.message}</div>}
-
-          <button onClick={handleOnClick}>Toca para agregar la tarea</button>
           {data &&
             data.map((task) => (
               <div key={task.id} style={{ display: "flex" }}>
