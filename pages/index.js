@@ -39,7 +39,7 @@ export default function Home() {
         onChange={onChange("email")}
         value={formValues.email}
       />
-      <Spacer.Horizontal size="lg" />
+      <Spacer.Horizontal size="sm" />
       <div
         style={{
           display: "flex",
@@ -47,7 +47,7 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Button>Completa tu perfil</Button>
+        <Button type="primary">Completa tu perfil</Button>
         <Spacer.Horizontal size="md" />
         <Button type="tertiary">Saltar este paso por ahora</Button>
       </div>

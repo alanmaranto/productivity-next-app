@@ -1,89 +1,9 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 2,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "title": "New Task",
+      "title": "ir al super",
       "author": "Alan",
-      "id": 3
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 4
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 5
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 7
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 8
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 10
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 11
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 12
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 13
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 14
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 15
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 16
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 17
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 18
-    },
-    {
-      "title": "New Task",
-      "author": "Alan",
-      "id": 19
+      "id": 1
     }
   ],
   "comments": [
