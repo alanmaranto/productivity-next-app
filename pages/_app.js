@@ -8,7 +8,8 @@ import Link from "next/link";
 import "minireset.css";
 import "@alanmaranto/components/styles/main.css";
 import "@alanmaranto/components/styles/tokens.css";
-import '../styles/globals.css';
+import "../styles/globals.css";
+import "../styles/main.css";
 
 const queryClient = new QueryClient();
 
