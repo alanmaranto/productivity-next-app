@@ -16,7 +16,7 @@ a {
 }
  */
 
-root {
+:root {
   --color-primary: #fb8b24;
   --color-primary-muted: #854d27;
   --color-primary-highlight: #dd7230;
@@ -43,7 +43,7 @@ root {
   --input-border-radius: 0;
 
   --picture-border: 1px solid #cbd5e0;
-  
+
   --card-border-radius: 0;
 
   --task-border-radius: 0;
