@@ -64,7 +64,7 @@ const Planning = ({ tasks }) => {
           <>
             <div className="user-header">
               <Avatar src="https://placeimg.com/200/200/people" />
-              <Spacer.Vertical size="xs" />
+              <Spacer.Vertical size="sm" />
               <div className="text">
                 <Heading size="lg">Hola, Alan</Heading>
                 <Paragraph size="lg">Conoce la metodología RETO</Paragraph>
@@ -74,7 +74,7 @@ const Planning = ({ tasks }) => {
             <Heading size="lg">
               Ahora dime, ¿Cuál es la primera tarea en la que trabajarás hoy
             </Heading>
-            <Spacer.Horizontal size="lg" />
+            <Spacer.Horizontal size="md" />
             {/* {isLoading && <div>Loading</div>}
           {error && <div>Error {error.message}</div>} */}
             {data &&
