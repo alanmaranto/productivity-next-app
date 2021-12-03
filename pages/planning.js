@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   FullHeightContent,
   Button,
@@ -19,6 +20,7 @@ export async function getStaticProps() {
 }
 
 const Planning = ({ tasks }) => {
+  const [shouldStart, setShouldStart] = useState(false);
   const queryClient = useQueryClient();
 
   // client side rendering
@@ -54,8 +56,26 @@ const Planning = ({ tasks }) => {
     deleteTaskMutation.mutate(id);
   };
 
+  useEffect(() => {
+    if (data?.length > 0) {
+      setShouldStart(true);
+    } else {
+      setShouldStart(false);
+    }
+  }, [data]);
+
+  const getTaskType = (index) => {
+    if (index > 2) {
+      return null;
+    }
+    return index === 0 ? "active" : "standby";
+  };
+
   if (isLoading) return "Loading...";
   if (error) return `An error has ocurred ${error.message}`;
+
+  const [firstTask, secondTask, thirdTask, ...backlogTasks] = data;
+  const priorityTasks = [firstTask, secondTask, thirdTask];
 
   return (
     <>
@@ -77,15 +97,33 @@ const Planning = ({ tasks }) => {
             <Spacer.Horizontal size="md" />
             {/* {isLoading && <div>Loading</div>}
           {error && <div>Error {error.message}</div>} */}
-            {data &&
-              data.map((task) => (
-                <>
-                  <Task key={task.id} onDelete={() => handleRemove(task.id)}>
-                    {task.title}
-                  </Task>
-                  <Spacer.Horizontal size="xs" />
-                </>
-              ))}
+            {priorityTasks?.map((task, idx) => (
+              <>
+                <Task
+                  key={task.id}
+                  onDelete={() => handleRemove(task.id)}
+                  isPending
+                  type={getTaskType(idx)}
+                >
+                  {task.title}
+                </Task>
+                <Spacer.Horizontal size="xs" />
+              </>
+            ))}
+            <div style={{ height: 5, margin: "10px 0", background: "red" }} />
+            {backlogTasks?.map((task, idx) => (
+              <>
+                <Task
+                  key={task.id}
+                  onDelete={() => handleRemove(task.id)}
+                  isPending
+                  type={getTaskType(idx)}
+                >
+                  {task.title}
+                </Task>
+                <Spacer.Horizontal size="xs" />
+              </>
+            ))}
             <Spacer.Horizontal size="md" />
             <AddButton
               onAdd={(value) => handleOnClick(value)}
@@ -97,15 +135,17 @@ const Planning = ({ tasks }) => {
           </>
         }
         footer={
-          <>
-            <Spacer.Horizontal size="lg" />
-            <Paragraph size="sm">
-              Basados en la matriz de Eisenhower priorizamos tus tareas evitando
-              listas de pendientes saturadas.
-            </Paragraph>
-            <Spacer.Horizontal size="sm" />
-            <Button type="primary">Empieza ahora</Button>
-          </>
+          shouldStart ? (
+            <>
+              <Spacer.Horizontal size="lg" />
+              <Paragraph size="sm">
+                Basados en la matriz de Eisenhower priorizamos tus tareas
+                evitando listas de pendientes saturadas.
+              </Paragraph>
+              <Spacer.Horizontal size="sm" />
+              <Button type="primary">Empieza ahora</Button>
+            </>
+          ) : null
         }
       />
     </>

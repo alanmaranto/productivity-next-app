@@ -1,9 +1,19 @@
 {
   "tasks": [
     {
-      "title": "hola",
+      "title": "Task",
       "author": "Alan",
       "id": 1
+    },
+    {
+      "title": "Task 2",
+      "author": "Alan",
+      "id": 2
+    },
+    {
+      "title": "Task 3",
+      "author": "Alan",
+      "id": 3
     }
   ],
   "comments": [
