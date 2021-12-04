@@ -8,7 +8,8 @@
     "dev:web": "next dev",
     "dev": "concurrently 'npm:dev:*'",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@alanmaranto/components": "^0.0.1",
@@ -23,6 +24,11 @@
   "devDependencies": {
     "concurrently": "^6.3.0",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.0.1"
+    "eslint-config-next": "11.0.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
