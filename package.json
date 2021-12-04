@@ -13,7 +13,7 @@
     "cm": "cz"
   },
   "dependencies": {
-    "@alanmaranto/components": "^0.0.1",
+    "@alanmaranto/components": "^1.2.1",
     "axios": "^0.21.4",
     "minireset.css": "^0.0.7",
     "next": "11.0.1",
@@ -31,9 +31,7 @@
     "@semantic-release/github": "^8.0.2",
     "@semantic-release/npm": "^8.0.3",
     "@semantic-release/release-notes-generator": "^10.0.3",
-    "commitizen": "^4.2.4",
-    "concurrently": "^6.3.0",
-    "cz-conventional-changelog": "^3.3.0",
+    "concurrently": "^6.4.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
     "husky": "^7.0.4",
